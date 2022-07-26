@@ -267,7 +267,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "a4:9d:96:eb:ac:e1:aa:05:fb:97:f2:1d:e8:2c:0e:9c"
+            - "	25:81:2c:e1:e7:2f:50:4b:05:4d:ba:d7:69:4b:56:91"
       - attach_workspace:
           at: ~/
     
@@ -311,7 +311,7 @@ jobs:
 
       - add_ssh_keys:
           fingerprints: 
-            - "a4:9d:96:eb:ac:e1:aa:05:fb:97:f2:1d:e8:2c:0e:9c"
+            - "	25:81:2c:e1:e7:2f:50:4b:05:4d:ba:d7:69:4b:56:91"
       - attach_workspace:
           at: ~/
 
@@ -354,7 +354,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints: 
-            - "a4:9d:96:eb:ac:e1:aa:05:fb:97:f2:1d:e8:2c:0e:9c"
+            - "	25:81:2c:e1:e7:2f:50:4b:05:4d:ba:d7:69:4b:56:91"
       - attach_workspace:
           at: ~/
       - install_nodejs
@@ -412,7 +412,7 @@ jobs:
               echo $FRONTEND_WEBSITE
               if curl -s $FRONTEND_WEBSITE | grep "Welcome"
               then
-                exit 0
+                exit 1
               else
                 exit 1
               fi
@@ -434,7 +434,7 @@ jobs:
             list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
             --no-paginate --output text)
             echo "Old Wokflow ID: $OLD_WORKFLOW_ID"
-            curl https://kvdb.io/33GxcCpH7rHocPuWALvF32/old_workflow_id -d "${OLD_WORKFLOW_ID}"
+            curl https://kvdb.io/J2Tk1VGdpDeeU9hzDNqYwv/old_workflow_id -d "${OLD_WORKFLOW_ID}"
       - run:
           name: Update cloudfront distribution
           command: |
@@ -459,12 +459,12 @@ jobs:
                 --query "StackSummaries[*].StackName" \
                 --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
             echo Stack names: "${STACKS[@]}"
-            export OldWorkflowID=$(curl --insecure https://kvdb.io/33GxcCpH7rHocPuWALvF32/old_workflow_id)
+            export OldWorkflowID=$(curl --insecure https://kvdb.io/J2Tk1VGdpDeeU9hzDNqYwv/old_workflow_id)
             echo Old Workflow ID: $OldWorkflowID
       - run:
           name: Remove old stacks and files
           command: |
-            export OldWorkflowID=$(curl --insecure https://kvdb.io/33GxcCpH7rHocPuWALvF32/old_workflow_id)
+            export OldWorkflowID=$(curl --insecure https://kvdb.io/J2Tk1VGdpDeeU9hzDNqYwv/old_workflow_id)
             echo Old Workflow ID: $OldWorkflowID 
             if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
             then
