@@ -1,0 +1,4 @@
+Github repository
+URL01=https://github.com/cosy5104/cdond-c3-projectstarter
+S3 bucket url
+URL02=arn:aws:s3:::udapeople-f9ea3d7
